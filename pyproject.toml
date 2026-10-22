@@ -1,0 +1,26 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "dream-emulator"
+version = "0.1.0"
+description = "Differentiable reduced emulation of parameterized linear systems"
+readme = "README.md"
+requires-python = ">=3.10"
+license = {text = "BSD-3-Clause"}
+authors = [{name = "Jin Lei", email = "jinl@tongji.edu.cn"}]
+dependencies = ["jax>=0.4.30", "numpy>=1.24", "h5py>=3.8"]
+
+[project.optional-dependencies]
+inference = ["numpyro>=0.15"]
+plotting = ["matplotlib>=3.7"]
+example = ['jitr; python_version >= "3.12"']
+dev = ["pytest>=7", "matplotlib>=3.7", "numpyro>=0.15"]
+
+[tool.setuptools.packages.find]
+include = ["dream", "dream.*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+markers = ["example: tests requiring the optional example dependencies (Python >=3.12)"]
