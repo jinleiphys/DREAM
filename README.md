@@ -35,6 +35,13 @@ everything problem specific lives in one small adapter class written by the user
 
 ## How it works
 
+<p align="center"><img src="docs/schematic.png" width="420" alt="DREAM workflow: offline compression of exported operators and snapshots; online differentiable reduced solve feeding NUTS; direct-solver checks that enrich the snapshots when they fail"></p>
+
+The original solver is used only offline (left). Online (right), every
+evaluation rebuilds and solves the small reduced system and returns the
+observable with its exact gradient, which drives NUTS. Posterior points are
+checked against the original solver, and failed checks add snapshots.
+
 The adapter describes independent blocks $b$ (partial waves, total angular
 momenta, energies, ...), each a linear system
 
